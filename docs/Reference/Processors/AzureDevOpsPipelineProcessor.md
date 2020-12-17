@@ -41,7 +41,7 @@ Azure DevOps Processor that migrates Taskgroups, Build- and Release Pipelines.
     "Organisation": "https://dev.azure.com/nkdagility-preview/",
     "Project": "sourceProject",
     "AuthenticationMode": "AccessToken",
-    "AccessToken": "qosss7crwz3vie4fupzpaafjndoy6g6ulgkzhoxtmjgicv2lqjyq",
+    "AccessToken": "iksmyfwmracmyqb22p2rlytagg6mpzxu7ntowjvpihvk4fwcjzcq",
     "ReflectedWorkItemIdField": "Custom.ReflectedWorkItemId",
     "EndpointEnrichers": null
   },
@@ -50,7 +50,7 @@ Azure DevOps Processor that migrates Taskgroups, Build- and Release Pipelines.
     "Organisation": "https://dev.azure.com/nkdagility-preview/",
     "Project": "targetProject",
     "AuthenticationMode": "AccessToken",
-    "AccessToken": "qosss7crwz3vie4fupzpaafjndoy6g6ulgkzhoxtmjgicv2lqjyq",
+    "AccessToken": "iksmyfwmracmyqb22p2rlytagg6mpzxu7ntowjvpihvk4fwcjzcq",
     "ReflectedWorkItemIdField": "Custom.ReflectedWorkItemId",
     "EndpointEnrichers": null
   }

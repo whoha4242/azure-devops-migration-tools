@@ -143,6 +143,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Endpoints", "Endpoints", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Processors", "Processors", "{6B1F49FC-250D-4671-87BA-B95EB90C5A94}"
 	ProjectSection(SolutionItems) = preProject
+		docs\Reference\Processors\index-template.md = docs\Reference\Processors\index-template.md
 		docs\Reference\Processors\index.md = docs\Reference\Processors\index.md
 		docs\Reference\Processors\TfsSharedQueryProcessor.json = docs\Reference\Processors\TfsSharedQueryProcessor.json
 		docs\Reference\Processors\TfsSharedQueryProcessor.md = docs\Reference\Processors\TfsSharedQueryProcessor.md
@@ -172,7 +173,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProcessorEnrichers", "Proce
 		docs\Reference\ProcessorEnrichers\TfsWorkItemLinkEnricher.md = docs\Reference\ProcessorEnrichers\TfsWorkItemLinkEnricher.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigrationTools.Clients.AzureDevops.Rest.Tests", "src\MigrationTools.Clients.AzureDevops.Rest.Tests\MigrationTools.Clients.AzureDevops.Rest.Tests.csproj", "{70EA792C-E84C-4A5D-8280-FCC47F4AE150}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MigrationTools.Clients.AzureDevops.Rest.Tests", "src\MigrationTools.Clients.AzureDevops.Rest.Tests\MigrationTools.Clients.AzureDevops.Rest.Tests.csproj", "{70EA792C-E84C-4A5D-8280-FCC47F4AE150}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

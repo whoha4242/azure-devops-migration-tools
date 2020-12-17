@@ -55,7 +55,7 @@ namespace VstsSyncMigrator.ConsoleApp
         {
             string masterTemplate = System.IO.Path.Combine(referencePath, "template.md");
             var founds = types.Where(t => type.IsAssignableFrom(t) && !t.IsAbstract && !t.IsInterface).ToList();
-            ProcessIndexFile(types, folder, masterTemplate);
+            ProcessIndexFile(type, types, folder, masterTemplate);
             // Each File
             foreach (var item in founds)
             {
@@ -63,8 +63,48 @@ namespace VstsSyncMigrator.ConsoleApp
             }
         }
 
-        private static void ProcessIndexFile(List<Type> types, string folder, string masterTemplate)
+        private static void ProcessIndexFile(Type type, List<Type> types, string folder, string masterTemplate)
         {
+            Console.WriteLine("Processing Index:" + type.Name);
+            string templatemd = GetTemplate(folder, referencePath, masterTemplate, null);
+            templatemd = templatemd.Replace("<ClassName>", "List");
+            templatemd = templatemd.Replace("<TypeName>", folder);
+            templatemd = ProcessBreadcrumbs(folder, null, templatemd);
+            templatemd = ProcessIndexTypes(types, templatemd, folder);
+            File.WriteAllText(string.Format("../../../../../docs/Reference/{0}/{1}.md", folder, "index"), templatemd);
+        }
+
+        private static string ProcessIndexTypes(List<Type> types, string templatemd, string folder)
+        {
+            StringBuilder typetable = new StringBuilder();
+            typetable.AppendLine($"| {folder} name         | Status    | Data Type | Description                              |");
+            typetable.AppendLine("|------------------------|---------|---------|------------------------------------------|");
+            foreach (var item in types)
+            {
+                typetable.AppendLine(string.Format("| {0} | {1} | {2} | {3} |", item.Name, "unknown", "unknown", "unknown"));
+            }
+            return templatemd
+        }
+
+        private static string ProcessOptions(IOptions options, JObject joptions, string templatemd)
+        {
+            StringBuilder properties = new StringBuilder();
+            if (!(joptions is null))
+            {
+                properties.AppendLine("| Parameter name         | Type    | Description                              | Default Value                            |");
+                properties.AppendLine("|------------------------|---------|------------------------------------------|------------------------------------------|");
+                var jpropertys = joptions.Properties();
+                foreach (JProperty jproperty in jpropertys)
+                {
+                    properties.AppendLine(string.Format("| {0} | {1} | {2} | {3} |", jproperty.Name, GetPropertyType(options, jproperty), GetPropertyData(options, joptions, jproperty, "summary"), GetPropertyData(options, joptions, jproperty, "default")));
+                }
+                templatemd = templatemd.Replace("<Options>", properties.ToString());
+            }
+            else
+            {
+                templatemd = templatemd.Replace("<Options>", "Options not yet implmeneted");
+            }
+            return templatemd;
         }
 
         private static void ProcessItemFile(List<Type> types, string folder, string masterTemplate, Type item)
@@ -160,27 +200,6 @@ namespace VstsSyncMigrator.ConsoleApp
             return XDocument.Load(xmlDataPath);
         }
 
-        private static string ProcessOptions(IOptions options, JObject joptions, string templatemd)
-        {
-            StringBuilder properties = new StringBuilder();
-            if (!(joptions is null))
-            {
-                properties.AppendLine("| Parameter name         | Type    | Description                              | Default Value                            |");
-                properties.AppendLine("|------------------------|---------|------------------------------------------|------------------------------------------|");
-                var jpropertys = joptions.Properties();
-                foreach (JProperty jproperty in jpropertys)
-                {
-                    properties.AppendLine(string.Format("| {0} | {1} | {2} | {3} |", jproperty.Name, GetPropertyType(options, jproperty), GetPropertyData(options, joptions, jproperty, "summary"), GetPropertyData(options, joptions, jproperty, "default")));
-                }
-                templatemd = templatemd.Replace("<Options>", properties.ToString());
-            }
-            else
-            {
-                templatemd = templatemd.Replace("<Options>", "Options not yet implmeneted");
-            }
-            return templatemd;
-        }
-
         private static object GetPropertyType(IOptions options, JProperty jproperty)
         {
             return options.GetType().GetProperty(jproperty.Name).PropertyType.Name.Replace("`1", "");
@@ -202,14 +221,31 @@ namespace VstsSyncMigrator.ConsoleApp
 
         private static string ProcessBreadcrumbs(string folder, Type item, string templatemd)
         {
-            string breadcrumbs = $"[Overview](.././index.md) > [Reference](../index.md) > [{folder}](./index.md) > **{item.Name}**";
+            string breadcrumbs;
+            if (item == null)
+            {
+                breadcrumbs = $"[Overview](.././index.md) > [Reference](../index.md) > **{folder}**";
+            }
+            else
+            {
+                breadcrumbs = $"[Overview](.././index.md) > [Reference](../index.md) > [{folder}](./index.md) > **{item.Name}**";
+            }
             templatemd = templatemd.Replace("<Breadcrumbs>", breadcrumbs);
             return templatemd;
         }
 
         private static string GetTemplate(string folder, string referencePath, string masterTemplate, Type item)
         {
-            string typeTemplatename = string.Format("{0}-template.md", item.Name);
+            string typeTemplatename;
+            if (item == null)
+            {
+                typeTemplatename = "index-template.md";
+            }
+            else
+            {
+                typeTemplatename = string.Format("{0}-template.md", item.Name);
+            }
+
             string templateFile = Path.Combine(referencePath, folder, typeTemplatename);
             string templatemd;
             if (System.IO.File.Exists(templateFile))
