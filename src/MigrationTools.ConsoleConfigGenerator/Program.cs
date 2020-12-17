@@ -55,7 +55,7 @@ namespace VstsSyncMigrator.ConsoleApp
         {
             string masterTemplate = System.IO.Path.Combine(referencePath, "template.md");
             var founds = types.Where(t => type.IsAssignableFrom(t) && !t.IsAbstract && !t.IsInterface).ToList();
-            ProcessIndexFile(type, types, folder, masterTemplate);
+            ProcessIndexFile(type, founds, folder, masterTemplate);
             // Each File
             foreach (var item in founds)
             {
@@ -81,9 +81,10 @@ namespace VstsSyncMigrator.ConsoleApp
             typetable.AppendLine("|------------------------|---------|---------|------------------------------------------|");
             foreach (var item in types)
             {
-                typetable.AppendLine(string.Format("| {0} | {1} | {2} | {3} |", item.Name, "unknown", "unknown", "unknown"));
+                typetable.AppendLine(string.Format("| [{0}](./{0}.md) | {1} | {2} | {3} |", item.Name, "unknown", "unknown", "unknown"));
             }
-            return templatemd
+            templatemd = templatemd.Replace("<Options>", typetable.ToString());
+            return templatemd;
         }
 
         private static string ProcessOptions(IOptions options, JObject joptions, string templatemd)

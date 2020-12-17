@@ -1,33 +1,20 @@
-## Endpoint Enrichers
+## EndpointEnrichers: List
 
 >**_This documentation is for a preview version of the Azure DevOps Migration Tools._ If you are not using the preview version then please head over to the main [documentation](https://nkdagility.github.io/azure-devops-migration-tools).**
 
+[Overview](.././index.md) > [Reference](../index.md) > **EndpointEnrichers**
 
-[Overview](.././index.md) > [Reference](../index.md) > [Endpoints](../Endpoints/index.md) > *Endpoint Enrichers*
+<Description>
 
-Endpoint Enrichers are run within the context of the Endpoint that they are configured for. Many enpoints are flexable, however there are allso enrichers that only work with certain Endpoints.
+### Options
 
-Endpoint Enricher | Data Target | Description
-----------|-----------|------------
-WorkItemAttachmentEnricher | Attachments | TBA
-WorkItemLinkEnricher | Links | TBA
-WorkItemCreatedEnricher | CreatedDate | TBA
-WorkItemEmbedEnricher | HTML Fileds | TBA
-WorkItemFieldTableEnricher | History | TBA
+| EndpointEnrichers name         | Status    | Data Type | Description                              |
+|------------------------|---------|---------|------------------------------------------|
+| [TfsWorkItemAttachmentEnricher](./TfsWorkItemAttachmentEnricher.md) | unknown | unknown | unknown |
 
 
-### Endpoint Enricher Options
-
- All Endpoint Enrichers have a minimum set of options that are required to run. 
-
-#### Minimum Options to run
-
-The `Enabled` options is common to all Endpoint Enrichers.
-
+### Example JSON
 
 ```JSON
-    {
-      "ObjectType": "EndpointEnrichersOptions",
-      "Enabled": true,
-    }
+<ExampleJson>
 ```

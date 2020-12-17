@@ -4,7 +4,18 @@
 
 [Overview](.././index.md) > [Reference](../index.md) > *Processors*
 
+[Overview](.././index.md) > [Reference](../index.md) > **Processors**
+
 We provide a number of Processors that can be used to migrate diferent sorts of data.
+
+| Processors name         | Status    | Data Type | Description                              |
+|------------------------|---------|---------|------------------------------------------|
+| [WorkItemTrackingProcessor](./WorkItemTrackingProcessor.md) | unknown | unknown | unknown |
+| [TfsAreaAndIterationProcessor](./TfsAreaAndIterationProcessor.md) | unknown | unknown | unknown |
+| [TfsSharedQueryProcessor](./TfsSharedQueryProcessor.md) | unknown | unknown | unknown |
+| [TfsTeamSettingsProcessor](./TfsTeamSettingsProcessor.md) | unknown | unknown | unknown |
+| [AzureDevOpsPipelineProcessor](./AzureDevOpsPipelineProcessor.md) | unknown | unknown | unknown |
+
 
 Processor | Data Type | Description
 ----------|-----------|------------

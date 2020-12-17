@@ -1,41 +1,29 @@
-## Processor Enrichers
+## ProcessorEnrichers: List
 
 >**_This documentation is for a preview version of the Azure DevOps Migration Tools._ If you are not using the preview version then please head over to the main [documentation](https://nkdagility.github.io/azure-devops-migration-tools).**
 
+[Overview](.././index.md) > [Reference](../index.md) > **ProcessorEnrichers**
 
-[Overview](.././index.md) > [Reference](../index.md) > [Processors](../Processors/index.md) > *Processor Enrichers*
+<Description>
 
-Processor Enrichers are run within the context of the ProcessorProcessor that they are 
-configured for. Many Processor Enrichers are flexable, however there are also enrichers that only 
-work with certain Processors.
+### Options
 
-Processor Enricher | Processor(s) | Description
-----------|-----------|------------
-PauseAfterEachItem | Any | TBA
-AppendMigrationToolSignatureFooter | WorkItem | TBA
-FilterWorkItemsThatAlreadyExistInTarget | WorkItem | TBA
-SkipToFinalRevisedWorkItemType | WorkItem | TBA
+| ProcessorEnrichers name         | Status    | Data Type | Description                              |
+|------------------------|---------|---------|------------------------------------------|
+| [PauseAfterEachItem](./PauseAfterEachItem.md) | unknown | unknown | unknown |
+| [AppendMigrationToolSignatureFooter](./AppendMigrationToolSignatureFooter.md) | unknown | unknown | unknown |
+| [FilterWorkItemsThatAlreadyExistInTarget](./FilterWorkItemsThatAlreadyExistInTarget.md) | unknown | unknown | unknown |
+| [SkipToFinalRevisedWorkItemType](./SkipToFinalRevisedWorkItemType.md) | unknown | unknown | unknown |
+| [TfsValidateRequiredField](./TfsValidateRequiredField.md) | unknown | unknown | unknown |
+| [TfsEmbededImagesEnricher](./TfsEmbededImagesEnricher.md) | unknown | unknown | unknown |
+| [TfsGitRepositoryEnricher](./TfsGitRepositoryEnricher.md) | unknown | unknown | unknown |
+| [TfsWorkItemLinkEnricher](./TfsWorkItemLinkEnricher.md) | unknown | unknown | unknown |
+| [TfsNodeStructure](./TfsNodeStructure.md) | unknown | unknown | unknown |
+| [EmbededImagesRepairEnricher](./EmbededImagesRepairEnricher.md) | unknown | unknown | unknown |
 
-### Processor Pipline
 
-  - ProcessorExecutionBegin
-  - ProcessorExecutionAfterSource
-  - ProcessorExecutionBeforeProcessWorkItem
-  - ProcessorExecutionAfterProcessWorkItem
-  - ProcessorExecutionEnd
-
-### Processor Enricher Options
-
- All Processor Enrichers have a minimum set of options that are required to run. 
-
-#### Minimum Options to run
-
-The `Enabled` options is common to all Processor Enrichers.
-
+### Example JSON
 
 ```JSON
-    {
-      "ObjectType": "ProcessorEnrichersOptions",
-      "Enabled": true,
-    }
+<ExampleJson>
 ```
