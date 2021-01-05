@@ -128,9 +128,13 @@ namespace VstsSyncMigrator.Engine
                 }
             }
 
-            if (!String.IsNullOrEmpty(_config.WIQLQueryBit))
+            if (!String.IsNullOrEmpty(_config.WIQLQueryBitSource))
             {
-                constraints += _config.WIQLQueryBit;
+                constraints += _config.WIQLQueryBitSource;
+            }
+            if (!String.IsNullOrEmpty(_config.WIQLQueryBitTarget))
+            {
+                constraints += _config.WIQLQueryBitTarget;
             }
             return constraints;
         }

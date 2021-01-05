@@ -95,7 +95,10 @@
             </summary>
             <param name="otherProcessors">List of already configured processors.</param>
         </member>
-        <member name="P:MigrationTools._EngineV1.Configuration.IWorkItemProcessorConfig.WIQLOrderBit">
+        <member name="P:MigrationTools._EngineV1.Configuration.IWorkItemProcessorConfig.WIQLOrderBitSource">
+            <inheritdoc />
+        </member>
+        <member name="P:MigrationTools._EngineV1.Configuration.IWorkItemProcessorConfig.WIQLOrderBitTarget">
             <inheritdoc />
         </member>
         <member name="P:MigrationTools._EngineV1.Configuration.Processing.ExportProfilePictureFromADConfig.Enabled">
@@ -169,7 +172,7 @@
         <member name="M:MigrationTools._EngineV1.Configuration.Processing.WorkItemDeleteConfig.IsProcessorCompatible(System.Collections.Generic.IReadOnlyList{MigrationTools._EngineV1.Configuration.IProcessorConfig})">
             <inheritdoc />
         </member>
-        <member name="P:MigrationTools._EngineV1.Configuration.Processing.WorkItemMigrationConfig.WIQLOrderBit">
+        <member name="P:MigrationTools._EngineV1.Configuration.Processing.WorkItemMigrationConfig.WIQLOrderBitSource">
             <inheritdoc />
         </member>
         <member name="P:MigrationTools._EngineV1.Configuration.Processing.WorkItemMigrationConfig.Processor">

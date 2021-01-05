@@ -102,7 +102,12 @@ namespace VstsSyncMigrator.Engine
             string sourceQuery =
                 string.Format(
                     @"SELECT [System.Id], [System.Tags] FROM WorkItems WHERE [System.TeamProject] = @TeamProject {0} ORDER BY {1}",
-                    _config.WIQLQueryBit, _config.WIQLOrderBit);
+                    _config.WIQLQueryBitSource, _config.WIQLOrderBitSource);
+
+            string targetQuery =
+                string.Format(
+                    @"SELECT [System.Id], [System.Tags] FROM WorkItems WHERE [System.TeamProject] = @TeamProject {0} ORDER BY {1}",
+                    _config.WIQLQueryBitTarget, _config.WIQLOrderBitTarget);
 
             // Inform the user that he maybe has to be patient now
             contextLog.Information("Querying items to be migrated: {SourceQuery} ...", sourceQuery);
@@ -114,7 +119,7 @@ namespace VstsSyncMigrator.Engine
             if (_config.FilterWorkItemsThatAlreadyExistInTarget)
             {
                 contextLog.Information("[FilterWorkItemsThatAlreadyExistInTarget] is enabled. Searching for work items that have already been migrated to the target...", sourceWorkItems.Count());
-                sourceWorkItems = ((TfsWorkItemMigrationClient)Engine.Target.WorkItems).FilterExistingWorkItems(sourceWorkItems, new TfsWiqlDefinition() { OrderBit = _config.WIQLOrderBit, QueryBit = _config.WIQLQueryBit }, (TfsWorkItemMigrationClient)Engine.Source.WorkItems);
+                sourceWorkItems = ((TfsWorkItemMigrationClient)Engine.Target.WorkItems).FilterExistingWorkItems(sourceWorkItems, new TfsWiqlDefinition() { OrderBit = _config.WIQLOrderBitTarget, QueryBit = _config.WIQLQueryBitTarget }, (TfsWorkItemMigrationClient)Engine.Source.WorkItems);
                 contextLog.Information("!! After removing all found work items there are {SourceWorkItemCount} remaining to be migrated.", sourceWorkItems.Count());
             }
             //////////////////////////////////////////////////
@@ -236,8 +241,8 @@ namespace VstsSyncMigrator.Engine
                 string.Format(
                     @"SELECT [System.Id], [{0}] FROM WorkItems WHERE [System.TeamProject] = @TeamProject {1} ORDER BY {2}",
                      Engine.Target.Config.AsTeamProjectConfig().ReflectedWorkItemIDFieldName,
-                    _config.WIQLQueryBit,
-                    _config.WIQLOrderBit
+                    _config.WIQLQueryBitTarget,
+                    _config.WIQLOrderBitTarget
                     );
             contextLog.Debug("FilterByTarget: Query Execute...");
             var targetFoundItems = Engine.Target.WorkItems.GetWorkItems(targetQuery);

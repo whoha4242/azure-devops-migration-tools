@@ -10,10 +10,12 @@ namespace MigrationTools._EngineV1.Configuration.Processing
         public bool UpdateCreatedBy { get; set; }
         public bool BuildFieldTable { get; set; }
         public bool AppendMigrationToolSignatureFooter { get; set; }
-        public string WIQLQueryBit { get; set; }
+        public string WIQLQueryBitSource { get; set; }
 
         /// <inheritdoc />
-        public string WIQLOrderBit { get; set; }
+        public string WIQLOrderBitSource { get; set; }
+        public string WIQLQueryBitTarget { get; set; }
+        public string WIQLOrderBitTarget { get; set; }
 
         public bool Enabled { get; set; }
 
@@ -65,8 +67,10 @@ namespace MigrationTools._EngineV1.Configuration.Processing
             SkipToFinalRevisedWorkItemType = true;
             LinkMigrationSaveEachAsAdded = false;
             GenerateMigrationComment = true;
-            WIQLQueryBit = @"AND  [Microsoft.VSTS.Common.ClosedDate] = '' AND [System.WorkItemType] NOT IN ('Test Suite', 'Test Plan')";
-            WIQLOrderBit = "[System.ChangedDate] desc";
+            WIQLQueryBitSource = @"AND  [Microsoft.VSTS.Common.ClosedDate] = '' AND [System.WorkItemType] NOT IN ('Test Suite', 'Test Plan')";
+            WIQLOrderBitSource = "[System.ChangedDate] desc";
+            WIQLQueryBitTarget = @"AND  [Microsoft.VSTS.Common.ClosedDate] = '' AND [System.WorkItemType] NOT IN ('Test Suite', 'Test Plan')";
+            WIQLOrderBitTarget = "[System.ChangedDate] desc";
         }
     }
 }

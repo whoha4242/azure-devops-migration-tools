@@ -15,8 +15,10 @@ namespace MigrationTools._EngineV1.Configuration.Processing
             get { return "WorkItemPostProcessingContext"; }
         }
 
-        public string WIQLQueryBit { get; set; }
-        public string WIQLOrderBit { get; set; }
+        public string WIQLQueryBitSource { get; set; }
+        public string WIQLOrderBitSource { get; set; }
+        public string WIQLQueryBitTarget { get; set; }
+        public string WIQLOrderBitTarget { get; set; }
         public bool FilterWorkItemsThatAlreadyExistInTarget { get; set; }
         public bool PauseAfterEachWorkItem { get; set; }
         public int WorkItemCreateRetryLimit { get; set; }
@@ -29,7 +31,8 @@ namespace MigrationTools._EngineV1.Configuration.Processing
 
         public WorkItemPostProcessingConfig()
         {
-            WIQLQueryBit = "AND [TfsMigrationTool.ReflectedWorkItemId] = '' ";
+            WIQLQueryBitSource = "AND [TfsMigrationTool.ReflectedWorkItemId] = '' ";
+            WIQLQueryBitTarget = "AND [TfsMigrationTool.ReflectedWorkItemId] = '' ";
         }
     }
 }

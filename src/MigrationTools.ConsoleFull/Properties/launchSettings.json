@@ -2,7 +2,8 @@
   "profiles": {
     "execute": {
       "commandName": "Project",
-      "commandLineArgs": "execute -c configuration.json"
+      "commandLineArgs": "execute -c TFS-EA-AzDO-EA-configuration.json",
+      "workingDirectory": "C:\\Users\\cwarre4\\repos\\core-entauto-azdo-automate-migrate"
     },
     "init": {
       "commandName": "Project",

@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ben.Demystifier" Version="0.1.6" />
+    <PackageReference Include="Ben.Demystifier" Version="0.3.0" />
     <PackageReference Include="Microsoft.TeamFoundation.DistributedTask.WebApi" Version="16.153.0" />
     <PackageReference Include="Microsoft.TeamFoundationServer.ExtendedClient" Version="16.153.0" />
   </ItemGroup>

@@ -38,11 +38,11 @@ namespace VstsSyncMigrator.Engine
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
             //////////////////////////////////////////////////
-            string sourceQuery =
+            string targetQuery =
                 string.Format(
                     @"SELECT [System.Id], [System.Tags] FROM WorkItems WHERE [System.TeamProject] = @TeamProject {0} ORDER BY {1}",
-                    _config.WIQLQueryBit, _config.WIQLOrderBit);
-            var workItems = Engine.Target.WorkItems.GetWorkItems(sourceQuery);
+                    _config.WIQLQueryBitTarget, _config.WIQLOrderBitTarget);
+            var workItems = Engine.Target.WorkItems.GetWorkItems(targetQuery);
 
             if (workItems.Count > 0)
             {

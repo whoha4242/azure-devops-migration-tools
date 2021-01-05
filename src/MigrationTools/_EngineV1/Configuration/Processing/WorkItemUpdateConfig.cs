@@ -13,8 +13,10 @@ namespace MigrationTools._EngineV1.Configuration.Processing
             get { return "WorkItemUpdate"; }
         }
 
-        public string WIQLQueryBit { get; set; }
-        public string WIQLOrderBit { get; set; }
+        public string WIQLQueryBitSource { get; set; }
+        public string WIQLOrderBitSource { get; set; }
+        public string WIQLQueryBitTarget { get; set; }
+        public string WIQLOrderBitTarget { get; set; }
         public IList<int> WorkItemIDs { get; set; }
         public bool FilterWorkItemsThatAlreadyExistInTarget { get; set; }
         public bool PauseAfterEachWorkItem { get; set; }
@@ -28,7 +30,8 @@ namespace MigrationTools._EngineV1.Configuration.Processing
 
         public WorkItemUpdateConfig()
         {
-            WIQLQueryBit = @"AND [TfsMigrationTool.ReflectedWorkItemId] = '' AND  [Microsoft.VSTS.Common.ClosedDate] = '' AND [System.WorkItemType] IN ('Shared Steps', 'Shared Parameter', 'Test Case', 'Requirement', 'Task', 'User Story', 'Bug')";
+            WIQLQueryBitSource = @"AND [TfsMigrationTool.ReflectedWorkItemId] = '' AND  [Microsoft.VSTS.Common.ClosedDate] = '' AND [System.WorkItemType] IN ('Shared Steps', 'Shared Parameter', 'Test Case', 'Requirement', 'Task', 'User Story', 'Bug')";
+            WIQLQueryBitTarget = @"AND [TfsMigrationTool.ReflectedWorkItemId] = '' AND  [Microsoft.VSTS.Common.ClosedDate] = '' AND [System.WorkItemType] IN ('Shared Steps', 'Shared Parameter', 'Test Case', 'Requirement', 'Task', 'User Story', 'Bug')";
         }
     }
 }
