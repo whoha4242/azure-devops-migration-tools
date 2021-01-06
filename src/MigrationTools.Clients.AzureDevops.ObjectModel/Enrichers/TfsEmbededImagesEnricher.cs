@@ -48,7 +48,8 @@ namespace MigrationTools.Enrichers
 
         protected override void FixEmbededImages(WorkItemData wi, string oldTfsurl, string newTfsurl, string sourcePersonalAccessToken = "")
         {
-            Log.LogInformation("EmbededImagesRepairEnricher: Fixing HTML field attachments for work item {Id} from {OldTfsurl} to {NewTfsUrl}", wi.Id, oldTfsurl, GetUrlWithOppositeSchema(oldTfsurl));
+            //Log.LogInformation("EmbededImagesRepairEnricher: Fixing HTML field attachments for work item {Id} from {OldTfsurl} to {NewTfsUrl}", wi.Id, oldTfsurl, GetUrlWithOppositeSchema(oldTfsurl));
+            Log.LogInformation("EmbededImagesRepairEnricher: Fixing HTML field attachments for work item {Id} from {oldTfsurl} to {newTfsurl}", wi.Id, oldTfsurl, newTfsurl);
 
             var oldTfsurlOppositeSchema = GetUrlWithOppositeSchema(oldTfsurl);
             string regExSearchForImageUrl = "(?<=<img.*src=\")[^\"]*";
@@ -62,7 +63,7 @@ namespace MigrationTools.Enrichers
                     string regExSearchFileName = "(?<=FileName=)[^=]*";
                     foreach (Match match in matches)
                     {
-                        if (match.Value.ToLower().Contains(oldTfsurl.ToLower()) || match.Value.ToLower().Contains(oldTfsurlOppositeSchema.ToLower()))
+                        if (match.Value.ToLower().Contains(oldTfsurl.ToLower().Replace(" ","%20")) || match.Value.ToLower().Contains(oldTfsurlOppositeSchema.ToLower().Replace(" ", "%20")))
                         {
                             //save image locally and upload as attachment
                             Match newFileNameMatch = Regex.Match(match.Value, regExSearchFileName, RegexOptions.IgnoreCase);
